@@ -9,10 +9,15 @@
 
 class GameField {
 public:
-    std::string Place(int pos);
+    void PrintField();
 
 private:
-    std::string CheckState();
+    char Field[9]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    bool playerOne = false, playerTwo = true;
+    void CheckState();
+    void CheckAvailability(int);
+    void CheckWin();
+    void WinFunc(char);
 };
 
 #endif //TIC_TAC_TOE_GAMEFIELD_H

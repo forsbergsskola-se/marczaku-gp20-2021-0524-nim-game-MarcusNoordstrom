@@ -1,7 +1,14 @@
+using namespace std;
 #include <iostream>
 #include "GameField.h"
 
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    GameField gameField;
+
+    gameField.PrintField();
+
+
     return 0;
 }
