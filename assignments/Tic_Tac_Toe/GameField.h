@@ -10,10 +10,11 @@
 class GameField {
 public:
     void PrintField();
+    void Initialize();
 
 private:
     char Field[9]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    bool playerOne = false, playerTwo = true;
+    bool playerOne = false, playerTwo = true, twoPlayerMode;
     void CheckState();
     void CheckAvailability(int);
     void CheckWin();

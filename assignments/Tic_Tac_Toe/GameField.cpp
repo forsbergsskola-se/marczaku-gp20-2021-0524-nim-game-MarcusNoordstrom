@@ -7,7 +7,6 @@
 
 
 
-
 void GameField::CheckState() {
     std::cout << std::endl;
     std:: cout << "Choose between 1 - 9 , where you wanna place you're X/O" << std::endl;
@@ -15,17 +14,34 @@ void GameField::CheckState() {
     playerOne = !playerOne;
     playerTwo = !playerTwo;
 
-    int chosen;
-    std::cin >> chosen;
+    if(twoPlayerMode){
+        int chosen;
+        std::cin >> chosen;
 
-    if(playerOne){
-        CheckAvailability(chosen - 1);
-        Field[chosen - 1] = 'X';
-        PrintField();
+        if(playerOne){
+            CheckAvailability(chosen - 1);
+            Field[chosen - 1] = 'X';
+            PrintField();
+        }
+        else if(playerTwo){
+            CheckAvailability(chosen - 1);
+            Field[chosen - 1] = 'O';
+            PrintField();
+        }
     }
-    else if(playerTwo){
-        CheckAvailability(chosen - 1);
-        Field[chosen - 1] = 'O';
+    else if(!twoPlayerMode){
+        int chosen;
+
+        if(playerOne){
+            std::cin >> chosen;
+            CheckAvailability(chosen - 1);
+            Field[chosen - 1] = 'X';
+        }
+        else if(playerTwo){
+            chosen = rand() % 9 + 1;
+            CheckAvailability(chosen - 1);
+            Field[chosen - 1] = 'O';
+        }
         PrintField();
     }
 }
@@ -113,4 +129,18 @@ void GameField::WinFunc(char s) {
         std::cout << "Won!" << std::endl;
         exit(3);
     }
+}
+
+void GameField::Initialize() {
+    std::cout << "1. Two Player mode | " << "2. One player mode" << std::endl;
+    int choice;
+    std::cin >> choice;
+
+    if(choice == 1){
+        twoPlayerMode = true;
+    }
+    else{
+        twoPlayerMode = false;
+    }
+    PrintField();
 }
